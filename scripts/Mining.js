@@ -26,6 +26,9 @@ export const MineralHTML =() => {
             ------put facility minerals function here----
             </div>
             <div class="spaceCart">
+                <h2>Space Cart</h2>
+                <div id="spaceCartOutput"></div>
+                <button id = "purchaseButton">Purchase Mineral</button>
             ------Put space cart function here----
             </div>
         </section>
