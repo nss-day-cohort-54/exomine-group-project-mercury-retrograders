@@ -8,3 +8,18 @@
     //creates variable with target div id = "spaceCartOutput"
     //sets TARGET.innerHTML to the interpolated string
     //return HTML string
+
+
+//define a function that takes in the transient state object and adds tonage of selected mineral to colonyMinerals in database
+
+    //save getColonyMinerals to array variable
+    //use filter method to return array of colonyMineralObjects with colonyId = transientState.colonyId
+    //use find method to return colonyObject with mineralId === transientObject.mineralId
+    //invoke setColonyTonage(foundColonyObject.id, tonnage to be added)
+
+
+
+//define a function that takes in the transient state object and subtracts the tonage of the purchased mineral from the facilityMineral database
+
+
+
