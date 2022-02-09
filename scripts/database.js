@@ -156,35 +156,38 @@ export const setFacility = (facilityEventId) => {
     document.dispatchEvent(selectedFacility)
 }
 
+export const setGovernorName = () => {
+    //use .find method to iterate through the governors array and save to a new variable 
+    const foundGovernorObject = database.governors.find(governorObject => {
+    // transientObject.governorsId matches the governor.id on each governor on the governors array    
+    return database.transientState.governorId === governorObject.id
+    })
+    database.transientState.governorName = foundGovernorObject.name
+}
+
+
+    
+        
+
+//use .find method to iterate through colonies to match the id with colonyId of the foundGovernorObject and save it to a new variable
+        // return foundColonyObject
+        // use 
 export const setGovernor = (governorEventId) => {
     database.transientState.governorId = governorEventId
-    //find function takes in governorId and returns a governorObject with matching id
-    const foundGovernorObject = database.governors.find(governor => {
-        return governor.id === governorEventId
-
-    })
+    ///invoke other stuff function to add colonyId, colonyName
     const selectedGovna = new CustomEvent("governorChanged")
     document.dispatchEvent(selectedGovna)
 
 }
+
+export const setColonies = (colonyEventId) => {
+    database.transientState.colonyId = colonyEventId
+
+    const foundGovernorObject = database.governors.find (colony => {
+        return governor.colonyId === colonyEventId
+    })
     
-        //find function takes in foundGovernorObject.colonyID and returns a colonyObject with matching id
- //   const foundColony = database.colonies.find(colony => {
- //       return colony.id === foundGovernorObject.colonyId
-  //  })
-
-    //create colonyId property in transientState that equals foundGovernorObject.colonyId
- //   database.transientState.colonyId = foundGovernorObject.colonyId
-
-    //create colonyName property in transientState that equals foundColony.name
- //   database.transientState.colonyName = foundColony.name
-
-    //create governorName property in transientState that equals foundGovernorObject.name
-//    database.transientState.governorName = foundGovernorObject.name
-
-
-
-    
+}
 
 
 

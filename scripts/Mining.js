@@ -18,6 +18,7 @@ export const MineralHTML =() => {
         </section>
 
         <section class="colonyResources">
+            <h2 id="colonyMineralsH2"> Colony Minerals </h2>
         -----add function for colony resources box----
         </section>
 

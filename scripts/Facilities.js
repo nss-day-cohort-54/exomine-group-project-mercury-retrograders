@@ -21,3 +21,11 @@
     //Check if the id of the change === FACILITIES
         //Invoke setFacilities, passing in the value of the select element (facilityId) as an argument
 
+
+
+
+
+
+array.forEach(element => {
+    
+});
