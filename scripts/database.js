@@ -126,15 +126,37 @@ const database = {
 }
 
 
+export const getFacilities = () => {
+    return database.facilities.map(f => ({...f}))
+}
+
+export const getGovernors = () => {
+    return database.governors.map(governor => ({...governor}))
+}
+
+export const getColonies = () => {
+    return database.colonies.map(colony => ({...colony}))
+}
+
+export const getfacilityMinerals = () => {
+    return database.facilityMinerals.map(facilityMineral => ({...facilityMineral}))
+}
+
+export const getColonyMinerals = () => {
+    return database.colonyMinerals.map(colonyMineral => ({...colonyMineral}))
+}
+
+export const getTransientState = () => {
+    return database.transientState.map(tState => ({...tState}))
+}
 
 export const setFacility = (facilityId) => {
     database.transientState.selectedFacility = facilityId
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 
-export const getFacilities = () => {
-    return database.facilities.map(f => ({...f}))
-}
+
+
 
 export const purchaseMineral = () => {
 
@@ -143,3 +165,20 @@ export const purchaseMineral = () => {
         document.dispatchEvent( new CustomEvent("stateChanged") )
     }
 
+//function takes in colonyTonage object ID and amount purchased and adds amount to existing tonage
+export const setColonyTonage = (id, addedAmount) => {
+    //the colonyMinerals object id has already been matched
+    const selectedObject = database.colonyMinerals.find(mineral => {
+        return colonyMineral.id === id
+    })
+    selectedObject.tonage += addedAmount
+}
+
+//function takes in facilityTonage object ID and amount sold and subtracts amount to existing tonage
+export const setFacilityTonage = (id, subtractedAmount) => {
+    //the colonyMinerals object id has already been matched
+    const selectedObject = database.facilityMinerals.find(mineral => {
+        return facilityMineral.id === id
+    })
+    selectedObject.tonage += addedAmount
+}
