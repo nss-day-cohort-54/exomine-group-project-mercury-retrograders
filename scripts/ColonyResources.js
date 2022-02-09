@@ -1,3 +1,25 @@
+// the purpose of this module is to display - Colony Minerals in an h2 as a default and then
+// Colony Minerals will change when governor is chosen
+
+//create an event listener - listening for a change event - "governorChanged" in the document
+    // invoke the ColonyResources function
+
+
+
+
+
+//create a function that display the Colony Name and the inventory
+    // declare html variable that will store empty string
+    // add h2 element w/ Colony Name
+
+
+
+
+
+
+
+
+
 //this module will create a function that produces an output box for colony resources 
 //this function creates a string that prints colony name and colony minerals and tonage
 
