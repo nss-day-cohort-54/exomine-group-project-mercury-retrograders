@@ -153,6 +153,11 @@ export const getTransientState = () => {
 export const setFacility = (facilityEventId) => {
     database.transientState.facilityId = facilityEventId
 
+    const foundFacilityObject = database.facilities.find(facilityObject => {
+        return database.transientState.facilityId === facilityObject.id
+    })
+    database.transientState.facilityName = foundFacilityObject.name
+
     const selectedFacility = new CustomEvent("facilityChanged")
     document.dispatchEvent(selectedFacility)
 }

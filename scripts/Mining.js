@@ -9,23 +9,28 @@ export const MineralHTML =() => {
     return `
     <h1>Solar System Mining Marketplace</h1>
     <article id="mainContainer">
-        <section class="governorBox">
+        <section class="governorsAndColonyResources">
+
+            <div class = "governors">
+                <select id="facilitiesSelectBox">
+                        <option value="0">Select a Facility</option>
+                </select>
+            </div>
+            
+            <div class="colonyResources">
+                <h2 id="colonyMineralsH2"> Colony Minerals </h2>
+                -----add function for colony resources box----
+            </div>
+
         </section>
 
-        <section class="facilityBox">
-        -----add function for facility box----
-        </section>
-
-        <section class="colonyResources">
-            <h2 id="colonyMineralsH2"> Colony Minerals </h2>
-        -----add function for colony resources box----
-        </section>
+        
 
         <section class="mineralsAndCart">
             <div class="facilityMinerals">
-            <select id="facilitiesSelectBox">
-                <option value="0">Select a Facility</option>
-            </select>
+                <select id="facilitiesSelectBox">
+                    <option value="0">Select a Facility</option>
+                </select>
             ------put facility minerals function here----
             </div>
             <div class="spaceCart">

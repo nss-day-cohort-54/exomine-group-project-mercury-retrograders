@@ -2,9 +2,9 @@
 // Colony Minerals will change when governor is chosen
 
 //import setGovernors
+//import getMinerals
 //import getTransientState
 //import getColonyMinerals
-//import getMinerals
 
 
 
@@ -16,6 +16,9 @@
 //using querySelector to repopulate the colonyResources section with the new html
 
 //Create a function that returns the html for Colony Name and the inventory in an interpolated string
+    //getTransientState
+    //getColonyMinerals
+
     //get transientStateObject store in a variable
     //declare an html variable that will be an h2 element with colony.name + Minerls
         //<h2> ${colony.name}'s Minerals </h2>
