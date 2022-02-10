@@ -2,25 +2,52 @@
 // Colony Minerals will change when governor is chosen
 
 //import setGovernors
-//import setColonies
+//import getTransientState
+//import getColonyMinerals
+//import getMinerals
+
 
 
 //create an event listener to listen for  "governorChange" in the document
-    // when "governorChange" is hear
+    // when "governorChange" is heard
         // invoke the ColonoyResources function that returns an html interpolated string
 
 // use querySelector or getElementById to target the "colonyResources" section in minerals.js
+//using querySelector to repopulate the colonyResources section with the new html
 
-//Create a function that returns the Colony Name and the inventory in an interpolated string
-    //get transientStateObject
-    //
+//Create a function that returns the html for Colony Name and the inventory in an interpolated string
+    //get transientStateObject store in a variable
+    //declare an html variable that will be an h2 element with colony.name + Minerls
+        //<h2> ${colony.name}'s Minerals </h2>
 
 
-    <h2> ${colony.name}'s Minerals </h2>
 
+        //interate through getColonyMinerals using find
+        // declare  variable foundMineralObjectArray  use the filter method to  colonyMineralsObjectsArray
+/*
+transstate has 
+    governorId
+    governorName
+    colonyId
+    colonyName
 
-    //Use map array method to iterate through ??? to create a new array of colony resource list items
-        <li class="colonyResourcesList"> ${ number} tons of ${mineral name} </li>`
+colonyMineralObject
+    id
+    colonyId
+    mineralId
+    tonage
+*/
+        //return colonyMineralObject.id matches transientStateObject.colonyId
+           
+            //Use forEach method to iterate through foundMineralObjectArray to create a new list of colony resource items
+                //interate through minerals array use find method to return  mineral object with an id that matches colonyMinerals.mineralId
+                
+                //foundMineralObject {
+                    //id
+                    //name
+                //}
+                
+                <li class="colonyResourcesList"> ${ number} tons of ${mineral name} </li>`
 
     //Use .join() to convert array into string
         //Close select HTML element
@@ -75,7 +102,7 @@ h2> ${colony.name}'s Minerals </h2>
 //Use map array method to iterate through ??? to create a new array of colony resource list items
     <li class="colonyResourcesList"> ${ number} tons of ${mineral name} </li>`
 
-//Use .join() to convert array into string
+        //Use .join() to convert array into string
     //Close select HTML element
     //Return the HTML string
     

@@ -3,8 +3,10 @@
 //Import facilities from database
 //Import setFacilities from datatbase
 
-//Create an event listener to listen for selectedGovna in the document
-    //When selectedGovna in the document is heard
+// save getFacilities to a local variable
+
+//Create an event listener to listen for governorChanged in the document
+    //When governorChanged in the document is heard
         //Invoke Facilities function to produce a drop down menu with facilities
 
 //Create a function to produce a drop down menu with facilities
@@ -19,13 +21,4 @@
 //Create an event listener to listen for a change in the document
     //When the change in the document is heard
     //Check if the id of the change === FACILITIES
-        //Invoke setFacilities, passing in the value of the select element (facilityId) as an argument
-
-
-
-
-
-
-array.forEach(element => {
-    
-});
+        //Invoke setFacilities, passing in the value of the select HTML element (facilityId) as an argument

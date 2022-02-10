@@ -10,7 +10,6 @@ export const MineralHTML =() => {
     <h1>Solar System Mining Marketplace</h1>
     <article id="mainContainer">
         <section class="governorBox">
-        -----add function for governor's box----
         </section>
 
         <section class="facilityBox">
@@ -24,6 +23,9 @@ export const MineralHTML =() => {
 
         <section class="mineralsAndCart">
             <div class="facilityMinerals">
+            <select id="facilitiesSelectBox">
+                <option value="0">Select a Facility</option>
+            </select>
             ------put facility minerals function here----
             </div>
             <div class="spaceCart">
