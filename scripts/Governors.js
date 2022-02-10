@@ -9,6 +9,7 @@
 
     //create let html
     //add select element with id GOVERNORS
+        //add default option with value of 0 and text "Governor Selected..." >>> will show up as default option before iterating through governor array
     //Use map.() array method to list governors
         //Add drop down menu options to ^ select element with id = governorId
     //add map array to html with .JOIN
@@ -20,3 +21,5 @@
     //listening for a "change" in the document
         //checking to see if change target.id === GOVERNORS
             //If so, invoke setGovernor function and pass in select value (which is governorID of the chosed option)
+
+

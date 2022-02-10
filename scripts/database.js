@@ -152,43 +152,45 @@ export const getTransientState = () => {
 
 export const setFacility = (facilityEventId) => {
     database.transientState.facilityId = facilityEventId
+
     const selectedFacility = new CustomEvent("facilityChanged")
     document.dispatchEvent(selectedFacility)
 }
 
-export const setGovernorName = () => {
+//This function will responding to the change when a governor is selected from the drop down 
+    //and setting transient state governorId to selected governor id
+export const setGovernor = (governorEventId) => {
+    database.transientState.governorId = governorEventId
+    //invoke setGovernorName to return governorObject with a name property
+    const governorObject = setGovernorName()
+    ///invoke setColonies function to add colonyId, colonyName
+    setColonies(governorObject)
+    const selectedGovna = new CustomEvent("governorChanged")
+    document.dispatchEvent(selectedGovna)
+}
+
+const setGovernorName = () => {
     //use .find method to iterate through the governors array and save to a new variable 
     const foundGovernorObject = database.governors.find(governorObject => {
     // transientObject.governorsId matches the governor.id on each governor on the governors array    
-    return database.transientState.governorId === governorObject.id
+        return database.transientState.governorId === governorObject.id
     })
+    //add governorName property to transientState and set equal to foundGovernorObject.name
     database.transientState.governorName = foundGovernorObject.name
+    return foundGovernorObject
 }
 
 
-    
-        
 
-//use .find method to iterate through colonies to match the id with colonyId of the foundGovernorObject and save it to a new variable
-        // return foundColonyObject
-        // use 
-export const setGovernor = (governorEventId) => {
-    database.transientState.governorId = governorEventId
-    ///invoke other stuff function to add colonyId, colonyName
-    const selectedGovna = new CustomEvent("governorChanged")
-    document.dispatchEvent(selectedGovna)
-
-}
-
-export const setColonies = (colonyEventId) => {
-    database.transientState.colonyId = colonyEventId
-
-    const foundGovernorObject = database.governors.find (colony => {
-        return governor.colonyId === colonyEventId
+//This function will be invoked within setGovernor to add colonyId and colonyName to transient state
+const setColonies = (foundGovernorObject) => {
+    database.transientState.colonyId = foundGovernorObject.colonyId
+    //use .find() to iterate through colonies and return an object with colonyId matching paramter ID
+    const foundColonyObject = database.colonies.find (colony => {
+        return colony.id === foundGovernorObject.colonyId
     })
-    
+    database.transientState.colonyName = foundColonyObject.name
 }
-
 
 
 export const purchaseMineral = () => {
