@@ -33,6 +33,8 @@ export const MineralHTML =() => {
                 </select>
             ------put facility minerals function here----
             </div>
+            <div class="facilityInventory">
+            </div>
             <div class="spaceCart">
                 <h2>Space Cart</h2>
                 <div id="spaceCartOutput"></div>

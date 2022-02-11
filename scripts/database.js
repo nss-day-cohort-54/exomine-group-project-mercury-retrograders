@@ -150,26 +150,16 @@ export const getTransientState = () => {
     return database.transientState.map(tState => ({...tState}))
 }
 
-export const setFacility = (facilityEventId) => {
-    database.transientState.facilityId = facilityEventId
-
-    const foundFacilityObject = database.facilities.find(facilityObject => {
-        return database.transientState.facilityId === facilityObject.id
-    })
-    database.transientState.facilityName = foundFacilityObject.name
-
-    const selectedFacility = new CustomEvent("facilityChanged")
-    document.dispatchEvent(selectedFacility)
-}
 
 //This function will responding to the change when a governor is selected from the drop down 
-    //and setting transient state governorId to selected governor id
+//and setting transient state governorId to selected governor id
 export const setGovernor = (governorEventId) => {
     database.transientState.governorId = governorEventId
-    //invoke setGovernorName to return governorObject with a name property
-    const governorObject = setGovernorName()
+    //invoke setGovernorName - adds a governor name and returns governorObject 
+    const foundGovernorObject = setGovernorName()
     ///invoke setColonies function to add colonyId, colonyName
-    setColonies(governorObject)
+    setColonies(foundGovernorObject)
+    
     const selectedGovna = new CustomEvent("governorChanged")
     document.dispatchEvent(selectedGovna)
 }
@@ -177,7 +167,7 @@ export const setGovernor = (governorEventId) => {
 const setGovernorName = () => {
     //use .find method to iterate through the governors array and save to a new variable 
     const foundGovernorObject = database.governors.find(governorObject => {
-    // transientObject.governorsId matches the governor.id on each governor on the governors array    
+        // transientObject.governorsId matches the governor.id on each governor on the governors array    
         return database.transientState.governorId === governorObject.id
     })
     //add governorName property to transientState and set equal to foundGovernorObject.name
@@ -198,10 +188,65 @@ const setColonies = (foundGovernorObject) => {
 }
 
 
+//This function adds facilityId and facilityName to the transient state
+export const setFacility = (facilityEventId) => {
+    database.transientState.facilityId = facilityEventId
+    
+    const foundFacilityObject = database.facilities.find(facilityObject => {
+        return database.transientState.facilityId === facilityObject.id
+    })
+    database.transientState.facilityName = foundFacilityObject.name
+    
+    const selectedFacility = new CustomEvent("facilityChanged")
+    document.dispatchEvent(selectedFacility)
+}
+
+//this function adds facilityMinerals object to the transient state 
+export const setFacilityMineral = (facilityMineralEventId) => {
+    const foundFacilityMineralObject = database.facilityMinerals.find(facilityMineralObject =>{
+        return facilityMineralEventId === facilityMineralObject.id
+    })
+    database.transientState.facilityMineralObject = foundFacilityMineralObject
+    
+    document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
+}
+
+// this function invokes the subtractFacilityMineral function and addColonyMineral function
 export const purchaseMineral = () => {
 
-        // Broadcast custom event to entire documement so that the
-        // application can re-render and update state
-        document.dispatchEvent( new CustomEvent("stateChanged") )
+
+    document.dispatchEvent( new CustomEvent("stateChanged") )
+}
+
+const subtractFacilityMineral = () => {
+    // use for of loop or forEach method to iterate through the facilityMineralsArray
+        // add a conditional that checks if the transientState.facilityMineralObject.id matches facilityMineral.id
+            // facilityMineral.tonage -= 1
+}
+
+const addColonyMineral = () => {
+    //use find to iterate through database.colonyMinerals and save as variable foundColonyMineralObject
+        //use AND to return and object where transientState.colonyId == currentcolonyMineral AND transientState.mineralId === currentcolonyMineral.mineralId
+    //
+    //if foundColonyMineralObject === undefined
+        //then invoke createNewColonyMineralObject()
+    //else
+        //for colonyMineral of  database.colonyMinerals
+            //when colonyMineral.id ===foundColonyMineralObject.id
+                //colonyMineral.tonage ++
+ 
+//}
+const createNewColonyMineralObject = () => {
+    //const lastIndex = colonyMinerals.length -1
+    //const newId = colonyMinerals[lastIndex].id + 1
+    //const newColonyMineralObject = {
+        // id: newId,
+        // colonyId: database.transientState.colonyId,
+        // mineralId: database.transientState.mineralId
+        // tonage: 1
+    //database.colonyMinerals.push(newColonyMineralObject)
+
+
     }
+}
 

@@ -50,8 +50,8 @@
         //To check if transientObject.facilityId === facilityMinerals.facilityId
     //Use forEach to iterate through foundFacilityMineralsArray
         //Use .find() through minerals array to return the current foundMineralObject
-            //To check if mineral.id === foundMineralObject.mineralId
-        html+=`<li> <input type="radio" id = "mineralSelection--${foundMineralObject.id}/> ${foundFacilityMineral.tonage} tons of ${foundMineralObject.name} </li>`
+            //To check if mineral.id === foundFacilityMineralsArrayObject.mineralId
+        html+=`<li> <input type="radio" id = "mineralSelection--${foundFacilityMineralObject.id}/> ${foundFacilityMineralObject.tonage} tons of ${foundMineralObject.name} </li>`
                         
     html+=`</ul>`
 
@@ -64,10 +64,9 @@
     document.addEventListener(
         "change",
         (changeEvent) => {
-            if(changeEvent.target.id.startsWith("mineral")){
+            if(changeEvent.target.id.startsWith("mineralSelection")){
                 const [,id] = changeEvent.target.id.split("--")
                 setFacilityMineral(id)
-                setMineralId(changeEvent.target.value)
             }
         }
     )
