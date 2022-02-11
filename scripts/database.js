@@ -187,9 +187,6 @@ const setColonies = (foundGovernorObject) => {
     database.transientState.colonyName = foundColonyObject.name
 }
 
-export const setColonyMinerals = (foundColonyMineralsObjectsEventArray) => {
-    database.transientState.colonyMineralObjectsArray = foundColonyMineralsObjectsEventArray
-}
 
 //This function adds facilityId and facilityName to the transient state
 export const setFacility = (facilityEventId) => {
@@ -214,7 +211,7 @@ export const setFacilityMineral = (facilityMineralEventId) => {
     document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
 }
 
-// this function modifies the facilityMinerals and colonyResources
+// this function invokes the subtractFacilityMineral function and addColonyMineral function
 export const purchaseMineral = () => {
 
 
@@ -228,7 +225,28 @@ const subtractFacilityMineral = () => {
 }
 
 const addColonyMineral = () => {
-    // use .includes() in transientState.colonyMineralObjectsArray to check if the mineralId matches 
-        // add a conditional that checks if the 
+    //use find to iterate through database.colonyMinerals and save as variable foundColonyMineralObject
+        //use AND to return and object where transientState.colonyId == currentcolonyMineral AND transientState.mineralId === currentcolonyMineral.mineralId
+    //
+    //if foundColonyMineralObject === undefined
+        //then invoke createNewColonyMineralObject()
+    //else
+        //for colonyMineral of  database.colonyMinerals
+            //when colonyMineral.id ===foundColonyMineralObject.id
+                //colonyMineral.tonage ++
+ 
+//}
+const createNewColonyMineralObject = () => {
+    //const lastIndex = colonyMinerals.length -1
+    //const newId = colonyMinerals[lastIndex].id + 1
+    //const newColonyMineralObject = {
+        // id: newId,
+        // colonyId: database.transientState.colonyId,
+        // mineralId: database.transientState.mineralId
+        // tonage: 1
+    //database.colonyMinerals.push(newColonyMineralObject)
+
+
+    }
 }
 

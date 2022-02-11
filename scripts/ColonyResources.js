@@ -41,7 +41,7 @@ colonyMineralObject
     tonage
 */
             //return an array of all objects with colonyMineralObject.colonyId matches transientStateObject.colonyId
-            //invoke setColonyMinerals function with returned array as a parameter
+            
         // html += <ul> appeending the unordered list element to the html string 
         //Use forEach method to iterate through foundMineralObjectArray to create a new list of colony resource items
                 //interate through minerals array use find method to return  mineral object with an id that matches colonyMineralObject.mineralId
@@ -51,9 +51,8 @@ colonyMineralObject
                     //name
                 //}
                 //append the list item element to the html string
-                `<li class="colonyResourcesList"> ${ number} tons of ${mineral name} </li>`
+            //    `<li class="colonyResourcesList"> ${ number} tons of ${mineral name} </li>`
 
- 
         //Close ul HTML element
         //Return the HTML string
         
