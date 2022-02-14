@@ -1,5 +1,7 @@
 //This module will generate html for all main HTML elements 
 
+import { Governors } from "./Governors.js"
+
 //Header h1 Solar System Mining Marketplace
 
 //section w/ dropdown box for Governors 
@@ -12,6 +14,10 @@ export const MineralHTML =() => {
         <section class="governorsAndColonyResources">
 
             <div class = "governors">
+                <select id="governorSelectBox">
+                <option value="0">Select a Governor</option>
+                    ${Governors()}
+                    </select>
                 <select id="facilitiesSelectBox">
                         <option value="0">Select a Facility</option>
                 </select>
