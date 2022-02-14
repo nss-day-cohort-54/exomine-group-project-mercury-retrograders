@@ -147,7 +147,7 @@ export const getColonyMinerals = () => {
 }
 
 export const getTransientState = () => {
-    return database.transientState.map(tState => ({...tState}))
+    return database.transientState
 }
 
 export const getMinerals = () => {
@@ -194,7 +194,7 @@ const setColonies = (foundGovernorObject) => {
 
 //This function adds facilityId and facilityName to the transient state
 export const setFacility = (facilityEventId) => {
-    database.transientState.facilityId = facilityEventId
+    database.transientState.facilityId = parseInt(facilityEventId)
     
     const foundFacilityObject = database.facilities.find(facilityObject => {
         return database.transientState.facilityId === facilityObject.id
@@ -208,15 +208,18 @@ export const setFacility = (facilityEventId) => {
 //this function adds facilityMinerals object to the transient state 
 export const setFacilityMineral = (facilityMineralEventId) => {
     const foundFacilityMineralObject = database.facilityMinerals.find(facilityMineralObject =>{
-        return facilityMineralEventId === facilityMineralObject.id
+        return parseInt(facilityMineralEventId) === facilityMineralObject.id
     })
     database.transientState.facilityMineralObject = foundFacilityMineralObject
+    database.transientState.mineralId = foundFacilityMineralObject.mineralId
     
     document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
 }
 
 // this function invokes the subtractFacilityMineral function and addColonyMineral function
 export const purchaseMineral = () => {
+    subtractFacilityMineral()
+    addColonyMineral()
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 
@@ -229,7 +232,7 @@ export const purchaseMineral = () => {
 const subtractFacilityMineral = () => {
     database.facilityMinerals.forEach(facilityMineral => {
         if(database.transientState.facilityMineralObject.id === facilityMineral.id){
-            facilityMineral--
+            facilityMineral.tonage --
         }
         
     });
@@ -248,22 +251,25 @@ const subtractFacilityMineral = () => {
 //}
 
 const addColonyMineral = () => {
+
     const foundColonyMineralObject = database.colonyMinerals.find(colonyMineral => {
-        if(database.transientState.colonyId === colonyMineral.colonyId && database.transientState.mineralId === colonyMineral.mineraId){
+        if(database.transientState.colonyId === colonyMineral.colonyId && database.transientState.mineralId === colonyMineral.mineralId){
             return colonyMineral.id
-        }
+        } else {
+            return undefined
+        }})
     
     if(foundColonyMineralObject === undefined){
         createNewColonyMineralObject()
     } else {
-        for(colonyMineral of database.colonyMinerals) {
+        for(const colonyMineral of database.colonyMinerals) {
             if(colonyMineral.id === foundColonyMineralObject.id){
                 colonyMineral.tonage++
             }
         }
     }
-    })
-}
+    }
+
 //const createNewColonyMineralObject = () => {
     //const lastIndex = colonyMinerals.length -1
     //const newId = colonyMinerals[lastIndex].id + 1
@@ -277,7 +283,7 @@ const addColonyMineral = () => {
 
 const createNewColonyMineralObject = () => {
     const lastIndex = database.colonyMinerals.length -1
-    const newId = database.colonyMinerals[lastIndex] +1
+    const newId = database.colonyMinerals[lastIndex].id +1
     const newColonyMineralObject = {
         id: newId,
         colonyId: database.transientState.colonyId,

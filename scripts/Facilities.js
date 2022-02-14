@@ -5,15 +5,16 @@
 //Import getFacilityMinerals from database
 //Import getMinerals from database
 //Import setFacilityMineral from database
-import { getFacilities, getfacilityMinerals, setFacility, setFacilityMineral } from "./database.js"
+import {getMinerals, getFacilities, getfacilityMinerals, setFacility, setFacilityMineral, getTransientState } from "./database.js"
 
 // save getMinerals to a local variable
+const minerals = getMinerals()
 
 // save getFacilities to a local variable
 const facilities = getFacilities()
 
 
-const targetHTMLfacilities = document.querySelector("#facilitiesSelectBox")
+
 
 
 //Create an event listener to listen for governorChanged in the document
@@ -22,6 +23,7 @@ document.addEventListener(
     "governorChanged",
     (changeEvent) => {
         //Invoke Facilities function to produce a drop down menu with facilities
+        const targetHTMLfacilities = document.querySelector("#facilitiesSelectBox")
         targetHTMLfacilities.innerHTML = Facilities()
     }
 )
@@ -31,9 +33,9 @@ document.addEventListener(
 //*****This function creates dropdown box */
 
 //Create a function to produce a drop down menu with facilities
-const Facilities = () => {
+export const Facilities = () => {
     //Define a string variable with a select HTML element - this element will have an id of FACILITIES
-    let html = `<select id="FACILITIES">`
+    let html = `<option value="0">Select a Facility</option>`
     //Use map array method to create a new array of facilities with option HTML elements
     const listItems = facilities.map(
         (facility) => {
@@ -42,8 +44,6 @@ const Facilities = () => {
         })
     //Use .join() to convert array into string
     html += listItems.join("")
-    //Close select HTML element
-    html += "</select>"
     //Return the HTML string
     return html
 }
@@ -55,7 +55,7 @@ document.addEventListener(
     "change",
     (changeEvent) => {
         //Check if the id of the change === FACILITIES
-        if (changeEvent.target.id === "FACILITIES") {
+        if (changeEvent.target.id === "facilitiesSelectBox") {
             //Invoke setFacility, passing in the value of the select HTML element (facilityId) as an argument
             setFacility(changeEvent.target.value)
         }
@@ -63,7 +63,7 @@ document.addEventListener(
 
 
 
-const targetHTMLfacilityInventory = document.querySelector(".facilityInventory")
+
 
 
 //Create an event listener to listen for facilityChanged in the document
@@ -72,6 +72,7 @@ document.addEventListener(
     "facilityChanged",
     (changeEvent) => {
         //Invoke facilityInventory function to produce radio buttons
+        const targetHTMLfacilityInventory = document.querySelector(".facilityInventory")
         targetHTMLfacilityInventory.innerHTML = facilityInventory()
     }
 )
@@ -81,13 +82,13 @@ document.addEventListener(
 //******** This function displays mineral inventory of selected facility with radio buttons */
 
 //Create facilityInventory function to produce radio buttons with quantity of minerals at the selected facility 
-const facilityInventory = () => {
+export const facilityInventory = () => {
     //Define variable to store transient state
     const transientObject = getTransientState() 
     //Define variable to store facilityMinerals
     const facilityMinerals = getfacilityMinerals()
     //Define html variable with header and append <ul>
-    let html = `<h2>Facility Minerals for ${transientObject.FacilityName}</h2>`
+    let html = `<h2>Facility Minerals for ${transientObject.facilityName}</h2>`
     html+="<ul>"
     //Use .filter() through facilityMinerals to return a foundFacilityMineralsArray
     const foundFacilityMineralsArray = facilityMinerals.filter(facilityMineral => {
@@ -95,13 +96,13 @@ const facilityInventory = () => {
         return transientObject.facilityId === facilityMineral.facilityId
     })
     //Use forEach to iterate through foundFacilityMineralsArray
-    foundFacilityMineralsArray.forEach(foundFacilityMineralObject => {
+    foundFacilityMineralsArray.forEach(foundFacilityMineralsObject => {
         //Use .find() through minerals array to return the current foundMineralObject
-        const foundMineralObject = facilityMinerals.find(mineral => {
+        const foundMineralObject = minerals.find(mineral => {
             //Check if mineral.id === foundFacilityMineralsArrayObject.mineralId
-            return mineral.id === foundFacilityMineralsArrayObject.mineralId
+            return foundFacilityMineralsObject.mineralId === mineral.id
         })
-        html+=`<li> <input type="radio" id = "mineralSelection--${foundFacilityMineralObject.id}/> ${foundFacilityMineralObject.tonage} tons of ${foundMineralObject.name} </li>`
+        html+=`<li> <input type="radio" name ="inventory" id = "mineralSelection--${foundFacilityMineralsObject.id}"/> ${foundFacilityMineralsObject.tonage} tons of ${foundMineralObject.name} </li>`
     })
     //close unordered list              
     html+=`</ul>`

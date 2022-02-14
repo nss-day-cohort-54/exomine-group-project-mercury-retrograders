@@ -6,10 +6,8 @@
 //import getTransientState
 //import getColonyMinerals
 //import setColonyMinerals
-import { setGovernors } from "./database.js"
 import { getColonyMinerals } from "./database.js"
 import { getTransientState } from "./database.js"
-import { setColonyMinerals} from " ./database.js"
 import { getMinerals } from "./database.js"
 
 
@@ -19,18 +17,17 @@ import { getMinerals } from "./database.js"
 
 
 document.addEventListener(
-    "governorChange",
+    "governorChanged",
     (changeEvent) => {
+        //use querySelector to repopulate the colonyResources section with the new html
+        const targetHTML = document.querySelector(".colonyResources")
         targetHTML.innerHTML = ColonyResources()
     }
 )
 
-//use querySelector to repopulate the colonyResources section with the new html
-const targetHTML = document.querySelector(".colonyResources")
-
 
 //Create a function - ColonyResources that returns the html for Colony Name and the inventory in an interpolated string
-const ColonyResources = () => {
+export const ColonyResources = () => {
     //getTransientState  //getColonyMinerals //getMinerals
     const transientStateObject = getTransientState()
     const colonyMineralsObjectsArray = getColonyMinerals()
