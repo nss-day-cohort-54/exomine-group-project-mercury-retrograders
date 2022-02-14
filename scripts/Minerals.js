@@ -23,3 +23,16 @@ export const Minerals = () => {
 // return string variable
 return interpolatedString
 }
+
+//This module will create a radio input box for facility resources
+
+//Import resources from database
+
+//Add event listener for when a facility is selected
+    //When selected, invoke function below
+
+//Create a function to add radio inputs showing what minerals are available at a facility
+    //Define a variable to store empty HTML string
+    //Add radio buttons 
+    //Use map.() to list resources and tonage at chosen facility
+    //Return html string
