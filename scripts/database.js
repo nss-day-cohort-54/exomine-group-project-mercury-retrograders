@@ -150,6 +150,10 @@ export const getTransientState = () => {
     return database.transientState.map(tState => ({...tState}))
 }
 
+export const getMinerals = () => {
+    return database.minerals.map(mineral => ({...mineral}))
+}
+
 
 //This function will responding to the change when a governor is selected from the drop down 
 //and setting transient state governorId to selected governor id
