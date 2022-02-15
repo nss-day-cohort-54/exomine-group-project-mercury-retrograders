@@ -26,7 +26,7 @@ export const shoppingCartDisplay = () => {
     // invoke the transientState and save to a variable
     const transientObject = getTransientState()
 
-    let html = "<ul>"
+    let html = `<ul class = "unBulletedList">`
 
     transientObject.facilityMineralObjectArray.forEach(facilityMineralObject =>{
         // use find to iterate through the minerals array

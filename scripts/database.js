@@ -46,6 +46,14 @@ const database = {
             id: 3,
             name: "Silicon",
         },
+        {
+            id: 4,
+            name: "Gold",
+        },
+        {
+            id: 5,
+            name: "Platinum",
+        }
     ],
     facilities: [
         {
@@ -91,6 +99,20 @@ const database = {
             mineralId: 2,
             facilityId: 3,
             tonage: 115
+        },
+        {
+            id: 5,
+            mineralId: 5,
+            facilityId: 1,
+            tonage: 95,
+
+        },
+        {
+            id: 6,
+            mineralId: 4,
+            facilityId: 1,
+            tonage: 95,
+
         },
     ],
     colonyMinerals: [

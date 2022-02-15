@@ -3,10 +3,11 @@
     flex-direction: column;
     width: 80%;
     align-self: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-h2{
-    font-family: Arial, Helvetica, sans-serif;
+h1{
+    font-size: xx-large;
 }
 
 .governorsAndColonyResources{
@@ -64,8 +65,9 @@ h2{
     border: 3px dotted red;
 }
 
-.facilityRadioOptions{
+.unBulletedList{
     list-style-type: none;
+    text-align: left;
 }
 
 button{
