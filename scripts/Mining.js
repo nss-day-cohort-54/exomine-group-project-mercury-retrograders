@@ -12,10 +12,11 @@ import { Governors } from "./Governors.js"
 
 export const MineralHTML =() => {
     return `
-    <h1>Solar System Mining Marketplace</h1>
     <article id="mainContainer">
+        <h1>Solar System Mining Marketplace</h1>
         <section class="governorsAndColonyResources">
             <div class = "governors">
+                <h4>Select Governor</h4>
                 ${Governors()}
             </div>
             
@@ -25,13 +26,18 @@ export const MineralHTML =() => {
 
         </section>
 
-        <section class="mineralsAndCart">
+        <section class = "facilitySelect">
             <div class="facilityMinerals">
+                <h4>Select Facility</h4>
                 <select id="facilitiesSelectBox">
                     <option value="0">Select a Facility</option>
                 </select>
             </div>
+        </section>
+
+        <section class="mineralsAndCart">
             <div class="facilityInventory">
+                <h2>Facility Inventory</h2>
             </div>
             <div class="spaceCart">
                 <h2>Space Cart</h2>

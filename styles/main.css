@@ -1,0 +1,80 @@
+#mainContainer{
+    display:flex;
+    flex-direction: column;
+    width: 80%;
+    align-self: center;
+}
+
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.governorsAndColonyResources{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.mineralsAndCart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.governors{
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    align-items: center;
+}
+
+.colonyResources{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+}
+
+
+.colonyResourcesContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.facilityMinerals{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.facilityInventory{
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    text-align: center;
+    border: 3px dotted blue;
+}
+
+.spaceCart{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    text-align: center;
+    border: 3px dotted red;
+}
+
+.facilityRadioOptions{
+    list-style-type: none;
+}
+
+button{
+    height: 4em;
+    width: 80%;
+    align-self: center;
+}
+
+select{
+    border: 2px solid black;
+    height: 20%;
+}
