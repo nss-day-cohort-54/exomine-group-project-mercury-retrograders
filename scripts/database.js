@@ -225,6 +225,7 @@ export const purchaseMineral = () => {
     database.transientState.facilityMineralObjectArray.forEach(facilityMineralObject => {
         subtractFacilityMineral(facilityMineralObject.id)
         addColonyMineral(facilityMineralObject)
+        database.transientState.facilityMineralObjectArray = []
 
     })
     document.dispatchEvent( new CustomEvent("stateChanged") )
