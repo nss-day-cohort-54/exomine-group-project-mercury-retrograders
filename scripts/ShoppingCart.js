@@ -26,15 +26,23 @@ export const shoppingCartDisplay = () => {
     // invoke the transientState and save to a variable
     const transientObject = getTransientState()
 
-    // use find to iterate through the minerals array
-        // return foundMineralObject where mineral.id === transientstate.facilityMineralObject.mineralId
-    const foundMineralObject = minerals.find(mineral => {return mineral.id === transientObject.mineralId})
+    let html = "<ul>"
 
-    //set the content target to the innerHTML equal to an interpolated string that reads "1 ton of ${"foundMineralObject.name}
-    // use querySelector to target the html element in mining.js that matches this id: spaceCartOutput
-    // save querySelecot to new variable
-const cartOutputTarget = document.querySelector("#spaceCartOutput")
-    cartOutputTarget.innerHTML = `1 ton of ${foundMineralObject.name}`
+    transientObject.facilityMineralObjectArray.forEach(facilityMineralObject =>{
+        // use find to iterate through the minerals array
+        const foundMineralObject = minerals.find(mineral => {
+            // return foundMineralObject where mineral.id === transientstate.facilityMineralObject.mineralId
+            return mineral.id === facilityMineralObject.mineralId})
+        html += `<li>1 ton of ${foundMineralObject.name}</li>`
+        })
+        html += "</ul>"
+        //set the content target to the innerHTML equal to an interpolated string that reads "1 ton of ${"foundMineralObject.name}
+        // use querySelector to target the html element in mining.js that matches this id: spaceCartOutput
+        // save querySelecot to new variable
+        const cartOutputTarget = document.querySelector("#spaceCartOutput")
+        cartOutputTarget.innerHTML = html
+        
+
 }
 
 // add eventListener to the purchaseButton
@@ -46,6 +54,8 @@ document.addEventListener(
     (clickEvent) => {
         if(clickEvent.target.id === "purchaseButton"){
             purchaseMineral()
+            const cartOutputTarget = document.querySelector("#spaceCartOutput")
+            cartOutputTarget.innerHTML = ``
         }
     }
 )

@@ -122,7 +122,9 @@ const database = {
             tonage: 34
         },
     ],
-    transientState: {}
+    transientState: {
+        facilityMineralObjectArray: [],
+    }
 }
 
 
@@ -205,21 +207,26 @@ export const setFacility = (facilityEventId) => {
     document.dispatchEvent(selectedFacility)
 }
 
-//this function adds facilityMinerals object to the transient state 
 export const setFacilityMineral = (facilityMineralEventId) => {
-    const foundFacilityMineralObject = database.facilityMinerals.find(facilityMineralObject =>{
-        return parseInt(facilityMineralEventId) === facilityMineralObject.id
+    //iterate through facilityMinerals 
+    const foundFacilityMineralObject = database.facilityMinerals.find(facilityMineral =>{
+        //check - does parameter id match facility mineral id
+        return facilityMineralEventId === facilityMineral.id
     })
-    database.transientState.facilityMineralObject = foundFacilityMineralObject
-    database.transientState.mineralId = foundFacilityMineralObject.mineralId
-    
+    //push that object to the new array in the transient state
+    database.transientState.facilityMineralObjectArray.push(foundFacilityMineralObject)
+    //dispatch Event
     document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
 }
 
+
 // this function invokes the subtractFacilityMineral function and addColonyMineral function
 export const purchaseMineral = () => {
-    subtractFacilityMineral()
-    addColonyMineral()
+    database.transientState.facilityMineralObjectArray.forEach(facilityMineralObject => {
+        subtractFacilityMineral(facilityMineralObject.id)
+        addColonyMineral(facilityMineralObject)
+
+    })
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 
@@ -229,38 +236,25 @@ export const purchaseMineral = () => {
             // facilityMineral.tonage -= 1
 //}
 
-const subtractFacilityMineral = () => {
+const subtractFacilityMineral = (facilityMineralObjectId) => {
     database.facilityMinerals.forEach(facilityMineral => {
-        if(database.transientState.facilityMineralObject.id === facilityMineral.id){
+        if(facilityMineralObjectId === facilityMineral.id){
             facilityMineral.tonage --
         }
-        
-    });
+    })
 }
 
-//const addColonyMineral = () => {
-    //use find to iterate through database.colonyMinerals and save as variable foundColonyMineralObject
-        //use AND to return and object where transientState.colonyId == currentcolonyMineral AND transientState.mineralId === currentcolonyMineral.mineralId
-    //
-    //if foundColonyMineralObject === undefined
-        //then invoke createNewColonyMineralObject()
-    //else
-        //for colonyMineral of  database.colonyMinerals
-            //when colonyMineral.id ===foundColonyMineralObject.id
-                //colonyMineral.tonage ++ 
-//}
-
-const addColonyMineral = () => {
+const addColonyMineral = (facilityMineralObject) => {
 
     const foundColonyMineralObject = database.colonyMinerals.find(colonyMineral => {
-        if(database.transientState.colonyId === colonyMineral.colonyId && database.transientState.mineralId === colonyMineral.mineralId){
-            return colonyMineral.id
+        if(database.transientState.colonyId === colonyMineral.colonyId && facilityMineralObject.mineralId === colonyMineral.mineralId){
+            return true
         } else {
             return undefined
         }})
     
     if(foundColonyMineralObject === undefined){
-        createNewColonyMineralObject()
+        createNewColonyMineralObject(facilityMineralObject)
     } else {
         for(const colonyMineral of database.colonyMinerals) {
             if(colonyMineral.id === foundColonyMineralObject.id){
@@ -281,13 +275,13 @@ const addColonyMineral = () => {
     //database.colonyMinerals.push(newColonyMineralObject)
 
 
-const createNewColonyMineralObject = () => {
+const createNewColonyMineralObject = (facilityMineralObject) => {
     const lastIndex = database.colonyMinerals.length -1
     const newId = database.colonyMinerals[lastIndex].id +1
     const newColonyMineralObject = {
         id: newId,
         colonyId: database.transientState.colonyId,
-        mineralId: database.transientState.mineralId,
+        mineralId: facilityMineralObject.mineralId,
         tonage: 1,
     }
     database.colonyMinerals.push(newColonyMineralObject)
