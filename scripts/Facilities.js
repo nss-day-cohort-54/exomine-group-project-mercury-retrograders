@@ -116,7 +116,7 @@ document.addEventListener(
     (changeEvent) => {
         if(changeEvent.target.id.startsWith("mineralSelection")){
             const [,id] = changeEvent.target.id.split("--")
-            setFacilityMineral(id)
+            setFacilityMineral(parseInt(id))
         }
     }
 )
