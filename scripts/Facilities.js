@@ -89,7 +89,7 @@ export const facilityInventory = () => {
     const facilityMinerals = getfacilityMinerals()
     //Define html variable with header and append <ul>
     let html = `<h2>Facility Minerals for ${transientObject.facilityName}</h2>`
-    html+="<ul>"
+    html+=`<ul class = "facilityRadioOptions">`
     //Use .filter() through facilityMinerals to return a foundFacilityMineralsArray
     const foundFacilityMineralsArray = facilityMinerals.filter(facilityMineral => {
         //Check if transientObject.facilityId === facilityMinerals.facilityId

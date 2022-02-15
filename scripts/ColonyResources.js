@@ -34,7 +34,8 @@ export const ColonyResources = () => {
     const mineralsArray = getMinerals()
 
     //declare an html variable that will be an h2 element with colony.name + Minerals //<h2> ${transientStateObject.colonyName}'s Minerals </h2>
-    let html = `<h2>${transientStateObject.colonyName}'s Minerals</h2>`
+    let html = `<div class = "colonyResourcesContainer">
+    <h2>${transientStateObject.colonyName}'s Minerals</h2>`
 
     // declare  variable foundMineralObjectArray  use the filter method to  colonyMineralsObjectsArray
     const foundColonyMineralObjectArray = colonyMineralsObjectsArray.filter(colonyMineralObject => {
@@ -57,6 +58,7 @@ export const ColonyResources = () => {
 
     //Close ul HTML element
         html += "</ul>"
+        html += "</div>"
     //Return the HTML string
         return html
 

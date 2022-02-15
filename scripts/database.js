@@ -3,13 +3,13 @@ const database = {
         {
             id: 1,
             name: "Elliot Spitzer",
-            colonyId: 3,
+            colonyId: 1,
             active: true,
         },
         {
             id: 2,
             name: "Mark Sanford",
-            colonyId: 1,
+            colonyId: 2,
             active: true,
         },
         {
